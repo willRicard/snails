@@ -1,0 +1,13 @@
+libs = -lSDL2 -lSDL2_image -lSDL2_mixer
+
+rule compile
+  command = $cxx -c $in -o $out $cxxflags
+
+rule link
+ command = $cxx -o $out $in $libs
+
+build obj/main.o: compile main.cc
+build obj/Game.o: compile Game.cc
+build obj/Texture.o: compile Texture.cc
+build obj/Player.o : compile Player.cc
+build snails: link obj/main.o obj/Game.o obj/Texture.o obj/Player.o
